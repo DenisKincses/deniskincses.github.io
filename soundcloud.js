@@ -11,7 +11,7 @@
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            [' ', 'play SoundCloud track %s', 'playSoundCloud', 'https://soundcloud.com/track']
+            [' ', 'play SoundCloud track %s', 'playSoundCloud', 'https://soundcloud.com/track', {color: 'orange'}]
         ],
         url: 'https://chat.openai.com/chat'
     };
