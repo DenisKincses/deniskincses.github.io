@@ -30,9 +30,9 @@ ext.playSoundCloud = function(url) {
     document.head.appendChild(soundcloudSdk);
 
     soundcloudSdk.onload = function() {
-        SC.oEmbed(url, {auto_play: true}).then(function(oEmbed) {
-            var soundcloudPlayer = $('<div>').html(oEmbed.html).appendTo('body');
-        });
+      SC.oEmbed(url, {auto_play: true}).then(function(oEmbed) {
+          var soundcloudPlayer = $('<div>').html(oEmbed.html).appendTo('body');
+      });
     };
-};
+}
 })({});
