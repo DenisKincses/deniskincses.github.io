@@ -17,7 +17,7 @@
     };
 
     // Register the extension
-    ScratchExtensions.register('Sample extension', descriptor, ext);
+    ScratchExtensions.register('Soundcloud', descriptor, ext);
 
     // Block functions
     ext.playSoundCloud = function(url) {
