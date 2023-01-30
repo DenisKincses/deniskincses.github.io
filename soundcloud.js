@@ -17,16 +17,18 @@
     };
 
     // Register the extension
-    ScratchExtensions.register('Soundcloud', descriptor, ext);
+    ScratchExtensions.register('Sample extension', descriptor, ext);
 
     // Block functions
     ext.playSoundCloud = function(url) {
         var soundcloudSdk = document.createElement('script');
         soundcloudSdk.src = "https://connect.soundcloud.com/sdk/sdk-3.3.2.js";
         document.head.appendChild(soundcloudSdk);
-        
-        SC.oEmbed(url, {auto_play: true}).then(function(oEmbed) {
-            var soundcloudPlayer = $('<div>').html(oEmbed.html).appendTo('body');
-        });
+
+        soundcloudSdk.onload = function() {
+            SC.oEmbed(url, {auto_play: true}).then(function(oEmbed) {
+                var soundcloudPlayer = $('<div>').html(oEmbed.html).appendTo('body');
+            });
+        };
     };
 })({});
