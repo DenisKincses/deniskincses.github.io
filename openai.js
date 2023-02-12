@@ -1,7 +1,7 @@
 (function(ext) {
 
 // Initialize the OpenAI API
-var apiKey = "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";
+var apiKey = "you need to put your own api key here";
 var endpoint = "https://api.openai.com/v1/engines/gpt-3/jobs";
 
 var answer = "";
