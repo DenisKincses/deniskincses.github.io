@@ -3,7 +3,6 @@
 // Initialize the OpenAI API
 var apiKey = "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";
 var endpoint = "https://api.openai.com/v1/engines/gpt-3/jobs";
-var responseData = "";
 
 // Helper function to make API calls to OpenAI
 function makeApiCall(data, callback) {
@@ -11,17 +10,18 @@ $.ajax({
 url: endpoint,
 type: "POST",
 headers: {
-"Authorization": "Bearer " + apiKey,
+"Authorization": "Bearer" + apiKey,
 "Content-Type": "application/json"
 },
 data: JSON.stringify(data),
 success: function(response) {
-callback(response);
+console.log(response);
+var responseObject = JSON.parse(response);
+callback(responseObject.answer);
 },
 error: function(jqXHR, textStatus, errorThrown) {
 console.error("OpenAI API error: " + textStatus);
 console.error("Error: " + errorThrown);
-responseData = "OpenAI API error: " + textStatus + " Error: " + errorThrown;
 }
 });
 }
@@ -29,17 +29,16 @@ responseData = "OpenAI API error: " + textStatus + " Error: " + errorThrown;
 // Scratch block to make API call to OpenAI
 ext.ask_question = function(question, callback) {
 var data = {
-prompt: question
+question: question
 };
 makeApiCall(data, function(response) {
-responseData = response;
-callback();
+// Process the API response here
+callback(response);
 });
 };
 
-// Scratch block to return the answer from OpenAI
-ext.answer = function() {
-return responseData;
+ext.answer = function(callback) {
+return answer;
 };
 
 // Register the Scratch blocks
@@ -51,6 +50,6 @@ blocks: [
 };
 
 // Initialize the extension
-ScratchExtensions.register('GPT-3 API', descriptor, ext);
+ScratchExtensions.register('OpenAI API', descriptor, ext);
 
 })({});
