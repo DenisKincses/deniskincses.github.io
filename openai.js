@@ -4,6 +4,7 @@
   var apiKey = "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";
   var endpoint = "https://api.openai.com/v1/engines/gpt-3/jobs";
   var answer = "";
+  var error = "";
  
   // Helper function to make API calls to OpenAI
   function makeApiCall(data, callback) {
@@ -11,12 +12,16 @@
       url: endpoint,
       type: "POST",
       headers: {
-        "Authorization": "Bearer " + apiKey,
+        "Authorization": "Bearer" + apiKey,
         "Content-Type": "application/json"
       },
       data: JSON.stringify(data),
       success: function(response) {
         callback(response);
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        error = jqXHR.responseJSON.error.message;
+        callback();
       }
     });
   }
@@ -28,12 +33,16 @@
       "max_tokens": 100
     };
     makeApiCall(data, function(response) {
-      answer = response.choices[0].text;
+      if (error) {
+        answer = error;
+      } else {
+        answer = response.choices[0].text;
+      }
       callback();
     });
   };
  
-  // Scratch block to report the answer from OpenAI
+  // Scratch block to report the answer or error from OpenAI
   ext.answer = function() {
     return answer;
   };
@@ -47,7 +56,6 @@
   };
  
   // Initialize the extension
-  ScratchExtensions.register('OpenAI API', descriptor, ext);
+  ScratchExtensions.register('GPT-3 API', descriptor, ext);
  
 })({});
-
