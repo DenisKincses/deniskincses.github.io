@@ -1,5 +1,7 @@
 (function(ext) {
 
+var answer;
+
 // Initialize the OpenAI API
 var apiKey = "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";
 var endpoint = "https://api.openai.com/v1/engines/gpt-3/jobs";
@@ -15,9 +17,7 @@ headers: {
 },
 data: JSON.stringify(data),
 success: function(response) {
-console.log(response);
-var responseObject = JSON.parse(response);
-callback(responseObject.answer);
+callback(response);
 },
 error: function(jqXHR, textStatus, errorThrown) {
 console.error("OpenAI API error: " + textStatus);
@@ -29,15 +29,16 @@ console.error("Error: " + errorThrown);
 // Scratch block to make API call to OpenAI
 ext.ask_question = function(question, callback) {
 var data = {
-question: question
+prompt: question
 };
 makeApiCall(data, function(response) {
-// Process the API response here
-callback(response);
+answer = response;
+callback();
 });
 };
 
-ext.answer = function(callback) {
+// Scratch block to get the API response
+ext.answer = function() {
 return answer;
 };
 
