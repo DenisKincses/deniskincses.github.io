@@ -12,7 +12,7 @@
       url: endpoint,
       type: "POST",
       headers: {
-        "Authorization": "Bearer" + apiKey,
+        "Authorization": "Bearer " + apiKey,
         "Content-Type": "application/json"
       },
       data: JSON.stringify(data),
