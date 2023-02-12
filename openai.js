@@ -1,10 +1,10 @@
 (function(ext) {
 
-var answer;
-
 // Initialize the OpenAI API
 var apiKey = "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";
 var endpoint = "https://api.openai.com/v1/engines/gpt-3/jobs";
+
+var answer = "";
 
 // Helper function to make API calls to OpenAI
 function makeApiCall(data, callback) {
@@ -12,7 +12,7 @@ $.ajax({
 url: endpoint,
 type: "POST",
 headers: {
-"Authorization": "Bearer" + apiKey,
+"Authorization": "Bearer " + apiKey,
 "Content-Type": "application/json"
 },
 data: JSON.stringify(data),
@@ -29,15 +29,18 @@ console.error("Error: " + errorThrown);
 // Scratch block to make API call to OpenAI
 ext.ask_question = function(question, callback) {
 var data = {
-prompt: question
+prompt: question,
+max_tokens: 100,
+temperature: 0.5
 };
 makeApiCall(data, function(response) {
-answer = response;
+// Process the API response here
+answer = response.choices[0].text;
 callback();
 });
 };
 
-// Scratch block to get the API response
+// Scratch block to return the answer
 ext.answer = function() {
 return answer;
 };
