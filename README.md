@@ -1,1 +1,3 @@
-all of the scratch extensions i have created with chatgpt that don't work.
+All of the Scratch Extensions that ChatGPT created (that also don't work)
+
+You can try to fix them, I don't really know JS.
