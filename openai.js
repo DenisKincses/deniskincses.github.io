@@ -41,8 +41,8 @@
   // Register the Scratch blocks
   var descriptor = {
     blocks: [
-      ['w', 'Ask OpenAI: %s', 'ask_question', 'What is the capital of France?'],
-      ['r', 'Answer', 'answer']
+      ['w', 'ask GPT-3: %s', 'ask_question', 'What is the capital of France?'],
+      ['r', 'GPT-3 answer', 'answer']
     ]
   };
  
