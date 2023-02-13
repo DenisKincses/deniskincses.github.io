@@ -25,8 +25,8 @@
         if (!iframe) {
             return;
         }
-        iframe.style.left = x + offsetX + 'px';
-        iframe.style.top = (-1 * y) + offsetY + 'px';
+        iframe.style.left = (x + offsetX) + 'px';
+        iframe.style.top = (offsetY - y) + 'px';
     };
     
     ext.set_webpage_dimensions = function(width, height) {
@@ -44,23 +44,11 @@
         }
     };
     
-    window.addEventListener("resize", function() {
-        stageWidth = window.innerWidth;
-        stageHeight = window.innerHeight;
-        var offsetX = stageWidth / 2;
-        var offsetY = stageHeight / 2;
-    
-        iframe.style.width = stageWidth + 'px';
-        iframe.style.height = stageHeight + 'px';
-        iframe.style.left = offsetX + 'px';
-        iframe.style.top = offsetY + 'px';
-    });
-    
     var descriptor = {
         blocks: [
             [' ', 'embed webpage %s', 'embed_webpage', 'https://www.example.com'],
             [' ', 'set webpage position x: %n y: %n', 'set_webpage_position', 0, 0],
-            [' ', 'set webpage size width: %n height: %n', 'set_webpage_size', 480, 360],
+            [' ', 'set webpage size width: %n height: %n', 'set_webpage_dimensions', 480, 360],
             [' ', 'remove webpage', 'remove_webpage']
         ],
         url: 'https://deniskincses.github.io/'
