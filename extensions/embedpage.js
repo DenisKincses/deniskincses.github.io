@@ -1,71 +1,55 @@
 (function(ext) {
-var stageWidth, stageHeight;
-var iframe;
-    
-ext.embed_webpage = function(url) {
-    if (!iframe) {
-        iframe = document.createElement('iframe');
-        document.body.appendChild(iframe);
-        iframe.style.position = 'absolute';
-    }
-    
-    stageWidth = window.innerWidth;
-    stageHeight = window.innerHeight;
-    var offsetX = stageWidth / 2;
-    var offsetY = stageHeight / 2;
-    
-    iframe.style.width = stageWidth + 'px';
-    iframe.style.height = stageHeight + 'px';
-    iframe.style.left = offsetX + 'px';
-    iframe.style.top = offsetY + 'px';
-    iframe.src = url;
-};
+    // Cleanup function when the extension is unloaded
+    ext._shutdown = function() {};
 
-ext.set_webpage_position = function(x, y) {
-    if (!iframe) {
-        return;
-    }
-    iframe.style.left = x + offsetX + 'px';
-    iframe.style.top = (-1 * y) + offsetY + 'px';
-};
+    // Status reporting code
+    // Use this to report missing hardware, plugin or unsupported browser
+    ext._getStatus = function() {
+        return {status: 2, msg: 'Ready'};
+    };
 
-ext.set_webpage_dimensions = function(width, height) {
-    if (!iframe) {
-        return;
-    }
-    iframe.style.width = width + 'px';
-    iframe.style.height = height + 'px';
-};
+    var iframe;
 
-ext.remove_webpage = function() {
-    if (iframe) {
-        document.body.removeChild(iframe);
-        iframe = null;
-    }
-};
+    ext.embed = function(url) {
+        if (!iframe) {
+            iframe = document.createElement('iframe');
+            iframe.style.position = 'absolute';
+            document.body.appendChild(iframe);
+        }
+        iframe.src = url;
+    };
 
-window.addEventListener("resize", function() {
-    stageWidth = window.innerWidth;
-    stageHeight = window.innerHeight;
-    var offsetX = stageWidth / 2;
-    var offsetY = stageHeight / 2;
+    ext.remove_embed = function() {
+        if (iframe) {
+            document.body.removeChild(iframe);
+            iframe = null;
+        }
+    };
 
-    iframe.style.width = stageWidth + 'px';
-    iframe.style.height = stageHeight + 'px';
-    iframe.style.left = x + offsetX + 'px';
-    iframe.style.top = (-1 * y) + offsetY + 'px';
-});
+    ext.set_embed_position = function(x, y) {
+        if (iframe) {
+            iframe.style.left = x + 'px';
+            iframe.style.top = y + 'px';
+        }
+    };
 
-var descriptor = {
-    blocks: [
-        [' ', 'embed webpage %s', 'embed_webpage', 'https://www.example.com'],
-        [' ', 'set webpage position x: %n y: %n', 'set_webpage_position', 0, 0],
-        [' ', 'set webpage size width: %n height: %n', 'set_webpage_size', 480, 360],
-        [' ', 'remove webpage', 'remove_webpage']
-    ],
-    url: 'https://deniskincses.github.io/'
-};
+    ext.set_embed_width_height = function(width, height) {
+        if (iframe) {
+            iframe.style.width = width + 'px';
+            iframe.style.height = height + 'px';
+        }
+    };
 
-ScratchExtensions.register('Embed Page', descriptor, ext);
+    // Block and block menu descriptions
+    var descriptor = {
+        blocks: [
+            ['', 'embed %s', 'embed', 'https://www.example.com'],
+            ['', 'remove embed', 'remove_embed'],
+            ['', 'set embed position x:%n position y:%n', 'set_embed_position', 0, 0],
+            ['', 'set embed width:%n height:%n', 'set_embed_width_height', 200, 200]
+        ]
+    };
+
+    // Register the extension
+    ScratchExtensions.register('Embed Extension', descriptor, ext);
 })({});
-
