@@ -15,12 +15,20 @@
         }, 0);
     };
     
+    ext.set_window_size = function(width, height, callback) {
+        window.resizeTo(width, height);
+        setTimeout(function() {
+            callback();
+        }, 0);
+    };
+    
     var descriptor = {
         blocks: [
-            ['w', 'set window x: %n y: %n', 'set_window_position', 0, 0, 'wait']
+            ['w', 'set window x: %n y: %n', 'set_window_position', 0, 0, 'wait'],
+            ['w', 'set window width: %n height: %n', 'set_window_size', window.innerWidth, window.innerHeight, 'wait']
         ],
         url: 'http://scratch.mit.edu'
     };
     
-    ScratchExtensions.register('Window Utilities', descriptor, ext);
+    ScratchExtensions.register('Window Tool', descriptor, ext);
 })({});
