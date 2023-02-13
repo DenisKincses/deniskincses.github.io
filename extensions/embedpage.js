@@ -30,8 +30,8 @@
         if (iframe) {
             var stageWidth = 480;
             var stageHeight = 360;
-            iframe.style.left = (stageWidth / 2 + x) + 'px';
-            iframe.style.top = (stageHeight / 2 - y) + 'px';
+            iframe.style.left = (stageWidth / 2 + x - window.innerWidth / 2) + 'px';
+            iframe.style.top = (stageHeight / 2 - y - window.innerHeight; / 2) + 'px';
         }
     };
 
