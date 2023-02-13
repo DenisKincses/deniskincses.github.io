@@ -13,11 +13,11 @@
     };
 
     ext.confirm = function(text) {
-        return window.confirm(text);
+        window.confirm(text);
     };
 
     ext.prompt = function(text, defaultText) {
-        return window.prompt(text, defaultText);
+        window.prompt(text, defaultText);
     };
 
     // Block and block menu descriptions
@@ -27,9 +27,9 @@
             [' ', 'confirm %s', 'confirm', 'Do you want to continue?'],
             [' ', 'prompt %s with default %s', 'prompt', 'Enter your name', 'Scratch User']
         ],
-        url: 'deniskincses.github.io/scratch'
+        url: 'https://github.com/DenisKincses/scratch'
     };
 
     // Register the extension
-    ScratchExtensions.register('Alerts Boxes', descriptor, ext);
+    ScratchExtensions.register('Alert Boxes', descriptor, ext);
 })({});
