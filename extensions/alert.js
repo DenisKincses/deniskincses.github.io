@@ -24,8 +24,8 @@
     var descriptor = {
         blocks: [
             [' ', 'alert %s', 'alert', 'Hello! How are you?'],
-            ['b', 'confirm %s', 'confirm', 'Do you want to continue?'],
-            ['r', 'prompt %s with default %s', 'prompt', 'Enter your name', 'Scratch User']
+            [' ', 'confirm %s', 'confirm', 'Do you want to continue?'],
+            [' ', 'prompt %s with default %s', 'prompt', 'Enter your name', 'Scratch User']
         ],
         url: 'deniskincses.github.io/scratch'
     };
