@@ -31,7 +31,7 @@
             var stageWidth = 480;
             var stageHeight = 360;
             iframe.style.left = (stageWidth + x - iframe.offsetWidth / 2) + 'px';
-            iframe.style.top = (stageHeight + y - iframe.offsetHeight / 2) + 'px';
+            iframe.style.top = (stageHeight - y - iframe.offsetHeight / 2) + 'px';
         }
     };
 
