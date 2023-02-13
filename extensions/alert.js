@@ -27,7 +27,7 @@
             [' ', 'confirm %s', 'confirm', 'Do you want to continue?'],
             [' ', 'prompt %s with default %s', 'prompt', 'Enter your name', 'Scratch User']
         ],
-        url: 'https://github.com/DenisKincses/scratch'
+        url: 'https://deniskincses.github.io/scratch'
     };
 
     // Register the extension
