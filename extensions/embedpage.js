@@ -28,8 +28,10 @@
 
     ext.set_embed_position = function(x, y) {
         if (iframe) {
-            iframe.style.left = x + 'px';
-            iframe.style.top = y + 'px';
+            var stageWidth = 480;
+            var stageHeight = 360;
+            iframe.style.left = (stageWidth / 2 + x - iframe.offsetWidth / 2) + 'px';
+            iframe.style.top = (stageHeight / 2 - y - iframe.offsetHeight / 2) + 'px';
         }
     };
 
