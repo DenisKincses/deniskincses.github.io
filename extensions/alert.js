@@ -25,11 +25,11 @@
         blocks: [
             [' ', 'alert %s', 'alert', 'Hello! How are you?'],
             [' ', 'confirm %s', 'confirm', 'Do you want to continue?'],
-            [' ', 'prompt %s with default %s', 'prompt', 'Enter your name', 'Scratch User']
+            ['r', 'prompt %s with default %s', 'prompt', 'Enter your name', 'Scratch User']
         ],
         url: 'https://deniskincses.github.io/scratch'
     };
 
     // Register the extension
-    ScratchExtensions.register('Alert Boxes', descriptor, ext);
+    Scratch.Extensions.register('Alert Boxes', descriptor, ext);
 })({});
