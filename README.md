@@ -16,6 +16,10 @@ A url opener.
 
 It gets your browser, and OS information, into a reporter.
 
+## alert.js
+
+Alert boxes that popup.
+
 ## embedpage.js
 
 A failed attempt to making a Scratch Extension to embed a page.
