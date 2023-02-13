@@ -22,5 +22,5 @@
         url: 'http://scratch.mit.edu'
     };
     
-    ScratchExtensions.register('Window position', descriptor, ext);
+    ScratchExtensions.register('Window Utilities', descriptor, ext);
 })({});
