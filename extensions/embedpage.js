@@ -30,15 +30,15 @@
         if (iframe) {
             var stageWidth = 480;
             var stageHeight = 360;
-            iframe.style.left = (window.innerWidth / 2 * x) + 'px';
-            iframe.style.top = (window.innerHeight / 2 * y) + 'px';
+            iframe.style.left = (window.innerWidth * x) + 'px';
+            iframe.style.top = (window.innerHeight * y) + 'px';
         }
     };
 
     ext.set_embed_width_height = function(width, height) {
         if (iframe) {
-            iframe.style.width = width + 'px';
-            iframe.style.height = height + 'px';
+            iframe.style.width =(window.innerWidth * width) + 'px';
+            iframe.style.height =(window.innerHeight * height) + 'px';
         }
     };
 
