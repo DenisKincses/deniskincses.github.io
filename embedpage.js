@@ -1,7 +1,7 @@
 (function(ext) {
 var stageWidth, stageHeight;
 var iframe;
-
+    
 ext.embed_webpage = function(url) {
     if (!iframe) {
         iframe = document.createElement('iframe');
@@ -31,14 +31,22 @@ ext.set_webpage_dimensions = function(width, height) {
     iframe.style.height = height + 'px';
 };
 
-    var descriptor = {
-        blocks: [
-            [' ', 'embed webpage %s', 'embed_webpage', 'https://www.example.com'],
-            [' ', 'set webpage position x: %n y: %n', 'set_webpage_position', 0, 0],
-            [' ', 'set webpage size width: %n height: %n', 'set_webpage_size', 480, 360]
-        ],
-        url: 'https://deniskincses.github.io/'
-    };
+ext.remove_webpage = function() {
+    if (iframe) {
+        document.body.removeChild(iframe);
+        iframe = null;
+    }
+};
 
-    ScratchExtensions.register('Embed Page', descriptor, ext);
+var descriptor = {
+    blocks: [
+        [' ', 'embed webpage %s', 'embed_webpage', 'https://www.example.com'],
+        [' ', 'set webpage position x: %n y: %n', 'set_webpage_position', 0, 0],
+        [' ', 'set webpage size width: %n height: %n', 'set_webpage_size', 480, 360],
+        [' ', 'remove webpage', 'remove_webpage']
+    ],
+    url: 'https://deniskincses.github.io/'
+};
+
+ScratchExtensions.register('Embed Page', descriptor, ext);
 })({});
