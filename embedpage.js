@@ -1,34 +1,42 @@
 (function(ext) {
+    var iframe;
+
     ext._shutdown = function() {};
     ext._getStatus = function() {
         return {status: 2, msg: 'Ready'};
     };
-    
-    ext.set_window_position = function(x, y, callback) {
-        var windowWidth = window.innerWidth;
-        var windowHeight = window.innerHeight;
-        var screenWidth = screen.width;
-        var screenHeight = screen.height;
-        window.moveTo(x + (screenWidth - windowWidth) / 2, -y + (screenHeight - windowHeight) / 2);
-        setTimeout(function() {
-            callback();
-        }, 0);
+
+    ext.embed_webpage = function(url) {
+        iframe = document.createElement('iframe');
+        iframe.src = url;
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = '0';
+        iframe.style.margin = '0';
+        iframe.style.padding = '0';
+        iframe.style.overflow = 'hidden';
+        iframe.style.position = 'absolute';
+        document.body.appendChild(iframe);
     };
-    
-    ext.set_window_size = function(width, height, callback) {
-        window.resizeTo(width, height);
-        setTimeout(function() {
-            callback();
-        }, 0);
+
+    ext.set_webpage_position = function(x, y) {
+        iframe.style.left = x + 'px';
+        iframe.style.top = (-1 * y) + 'px';
     };
-    
+
+    ext.set_webpage_size = function(width, height) {
+        iframe.style.width = width + 'px';
+        iframe.style.height = height + 'px';
+    };
+
     var descriptor = {
         blocks: [
-            ['w', 'set window x: %n y: %n', 'set_window_position', 0, 0, 'wait'],
-            ['w', 'set window width: %n height: %n', 'set_window_size', window.innerWidth, window.innerHeight, 'wait']
+            [' ', 'embed webpage %s', 'embed_webpage', 'https://www.example.com'],
+            [' ', 'set webpage position x: %n y: %n', 'set_webpage_position', 0, 0],
+            [' ', 'set webpage size width: %n height: %n', 'set_webpage_size', 480, 360]
         ],
-        url: 'http://scratch.mit.edu'
+        url: 'https://deniskincses.github.io/'
     };
-    
-    ScratchExtensions.register('Window position and size', descriptor, ext);
+
+    ScratchExtensions.register('Embed Page', descriptor, ext);
 })({});
