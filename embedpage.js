@@ -23,7 +23,7 @@ ext.embed_webpage = function(url) {
 
 ext.set_webpage_position = function(x, y) {
     iframe.style.left = x + offsetX + 'px';
-    iframe.style.top = (-1 * y) + offsetY + 'px';
+    iframe.style.top = y + offsetY + 'px';
 };
 
 ext.set_webpage_dimensions = function(width, height) {
