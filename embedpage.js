@@ -1,33 +1,35 @@
 (function(ext) {
-    var iframe;
+var stageWidth, stageHeight;
+var iframe;
 
-    ext._shutdown = function() {};
-    ext._getStatus = function() {
-        return {status: 2, msg: 'Ready'};
-    };
-
-    ext.embed_webpage = function(url) {
+ext.embed_webpage = function(url) {
+    if (!iframe) {
         iframe = document.createElement('iframe');
-        iframe.src = url;
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.style.border = '0';
-        iframe.style.margin = '0';
-        iframe.style.padding = '0';
-        iframe.style.overflow = 'hidden';
-        iframe.style.position = 'absolute';
         document.body.appendChild(iframe);
-    };
+        iframe.style.position = 'absolute';
+    }
+    
+    stageWidth = window.innerWidth;
+    stageHeight = window.innerHeight;
+    var offsetX = stageWidth / 2;
+    var offsetY = stageHeight / 2;
+    
+    iframe.style.width = stageWidth + 'px';
+    iframe.style.height = stageHeight + 'px';
+    iframe.style.left = offsetX + 'px';
+    iframe.style.top = offsetY + 'px';
+    iframe.src = url;
+};
 
-    ext.set_webpage_position = function(x, y) {
-        iframe.style.left = x + 'px';
-        iframe.style.top = (-1 * y) + 'px';
-    };
+ext.set_webpage_position = function(x, y) {
+    iframe.style.left = x + offsetX + 'px';
+    iframe.style.top = (-1 * y) + offsetY + 'px';
+};
 
-    ext.set_webpage_size = function(width, height) {
-        iframe.style.width = width + 'px';
-        iframe.style.height = height + 'px';
-    };
+ext.set_webpage_dimensions = function(width, height) {
+    iframe.style.width = width + 'px';
+    iframe.style.height = height + 'px';
+};
 
     var descriptor = {
         blocks: [
