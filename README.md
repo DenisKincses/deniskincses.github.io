@@ -1,7 +1,5 @@
 Scratch Extensions for Turbowarp
 
-(Note that all of these blocks only work with Electron.)
-
 **https://deniskincses.github.io/scratch/**
 
 ## windtools.js
