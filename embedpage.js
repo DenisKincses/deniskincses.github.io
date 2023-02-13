@@ -22,11 +22,17 @@ ext.embed_webpage = function(url) {
 };
 
 ext.set_webpage_position = function(x, y) {
+    if (!iframe) {
+        return;
+    }
     iframe.style.left = x + offsetX + 'px';
-    iframe.style.top = y + offsetY + 'px';
+    iframe.style.top = (-1 * y) + offsetY + 'px';
 };
 
 ext.set_webpage_dimensions = function(width, height) {
+    if (!iframe) {
+        return;
+    }
     iframe.style.width = width + 'px';
     iframe.style.height = height + 'px';
 };
