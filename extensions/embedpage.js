@@ -44,18 +44,6 @@
         }
     };
     
-    window.addEventListener("resize", function() {
-        stageWidth = window.innerWidth;
-        stageHeight = window.innerHeight;
-        var offsetX = stageWidth / 2;
-        var offsetY = stageHeight / 2;
-    
-        iframe.style.width = stageWidth + 'px';
-        iframe.style.height = stageHeight + 'px';
-        iframe.style.left = offsetX + 'px';
-        iframe.style.top = offsetY + 'px';
-    });
-    
     var descriptor = {
         blocks: [
             [' ', 'embed webpage %s', 'embed_webpage', 'https://www.example.com'],
