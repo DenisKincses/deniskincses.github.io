@@ -27,9 +27,9 @@
             ['b', 'confirm %s', 'confirm', 'Do you want to continue?'],
             ['r', 'prompt %s with default %s', 'prompt', 'Enter your name', 'Scratch User']
         ],
-        url: 'https://github.com/scratch-extensions/alert-extension'
+        url: 'deniskincses.github.io/scratch'
     };
 
     // Register the extension
-    ScratchExtensions.register('Alert Extension', descriptor, ext);
+    ScratchExtensions.register('Alerts Boxes', descriptor, ext);
 })({});
