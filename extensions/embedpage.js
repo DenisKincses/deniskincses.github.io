@@ -37,8 +37,10 @@
 
     ext.set_embed_width_height = function(width, height) {
         if (iframe) {
-            iframe.style.width = width + 'px';
-            iframe.style.height = height + 'px';
+            var stageWidth = window.innerWidth;
+            var stageHeight = window.innerHeight;
+            iframe.style.width = (stageWidth / 2 + width - iframe.offsetWidth / 2) + 'px';
+            iframe.style.height = (stageHeight / 2 - height - iframe.offsetHeight / 2) + 'px';
         }
     };
 
@@ -48,11 +50,18 @@
             ['', 'embed %s', 'embed', 'https://www.example.com'],
             ['', 'remove embed', 'remove_embed'],
             ['', 'set embed position x:%n position y:%n', 'set_embed_position', 0, 0],
-            ['', 'set embed width:%n height:%n', 'set_embed_width_height', 200, 200]
+            ['', 'set embed width:%n height:%n', 'set_embed_width_height', 200, 200],
+            {
+                blockType: 'reporter',
+                text: 'current URL',
+                returnType: 'string',
+                block: function() {
+                    return window.location.href;
+                }
+            }
         ]
     };
 
     // Register the extension
     ScratchExtensions.register('Embed Extension', descriptor, ext);
 })({});
-
