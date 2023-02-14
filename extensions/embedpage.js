@@ -37,10 +37,8 @@
 
     ext.set_embed_width_height = function(width, height) {
         if (iframe) {
-            var stageWidth = window.innerWidth;
-            var stageHeight = window.innerHeight;
-            iframe.style.width = (width - stageWidth / 2) + 'px';
-            iframe.style.height = (height - stageHeight / 2) + 'px';
+            iframe.style.width = width + 'px';
+            iframe.style.height = height + 'px';
         }
     };
 
