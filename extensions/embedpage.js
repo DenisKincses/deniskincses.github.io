@@ -39,8 +39,8 @@
         if (iframe) {
             var stageWidth = window.innerWidth;
             var stageHeight = window.innerHeight;
-            iframe.style.width = (stageWidth / 2 - width) + 'px';
-            iframe.style.height = (stageHeight / 2 - height) + 'px';
+            iframe.style.width = (width - stageWidth / 2) + 'px';
+            iframe.style.height = (height - stageHeight / 2) + 'px';
         }
     };
 
