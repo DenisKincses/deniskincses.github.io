@@ -44,6 +44,10 @@
         }
     };
 
+    ext.current_url = function() {
+        return iframe ? iframe.src : '';
+    };
+
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
@@ -51,14 +55,7 @@
             ['', 'remove embed', 'remove_embed'],
             ['', 'set embed position x:%n position y:%n', 'set_embed_position', 0, 0],
             ['', 'set embed width:%n height:%n', 'set_embed_width_height', 200, 200],
-            {
-                blockType: 'reporter',
-                text: 'current URL',
-                returnType: 'string',
-                block: function() {
-                    return window.location.href;
-                }
-            }
+            ['r', 'current url', 'current_url']
         ]
     };
 
