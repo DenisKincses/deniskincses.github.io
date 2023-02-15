@@ -8,34 +8,39 @@
         return {status: 2, msg: 'Ready'};
     };
 
-    ext.make_borderless = function() {
-        var el = document.documentElement;
-        el.style.setProperty('--window-border', '0px');
+    // Function to make the backdrop transparent
+    ext.make_backdrop_transparent = function() {
+        var stage = document.getElementById('stage');
+        if (stage) {
+            stage.style.background = 'none';
+        }
     };
 
-    ext.make_transparent = function() {
-        var el = document.documentElement;
-        el.style.setProperty('background-color', 'transparent');
-        el.style.setProperty('background', 'none');
+    // Function to make the frame disappear
+    ext.make_frame_disappear = function() {
+        var blocks = document.getElementsByClassName('blocklyMainBackground');
+        for (var i = 0; i < blocks.length; i++) {
+            blocks[i].style.display = 'none';
+        }
     };
 
-    ext.reset_effects = function() {
-        var el = document.documentElement;
-        el.style.removeProperty('--window-border');
-        el.style.removeProperty('background-color');
-        el.style.removeProperty('background');
+    // Function to remove effects
+    ext.remove_effects = function() {
+        var stage = document.getElementById('stage');
+        if (stage) {
+            stage.style.filter = '';
+        }
     };
 
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
-            [' ', 'make window borderless', 'make_borderless'],
-            [' ', 'make window transparent', 'make_transparent'],
-            [' ', 'reset window effects', 'reset_effects'],
+            ['', 'make backdrop transparent', 'make_backdrop_transparent'],
+            ['', 'make frame disappear', 'make_frame_disappear'],
+            ['', 'remove effects', 'remove_effects']
         ]
     };
 
     // Register the extension
-    ScratchExtensions.register('Window Effects Extension', descriptor, ext);
+    ScratchExtensions.register('Window Effects', descriptor, ext);
 })({});
-
