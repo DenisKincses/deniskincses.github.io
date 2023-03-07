@@ -16,7 +16,11 @@
             iframe.style.position = 'absolute';
             iframe.setAttribute("allow", "autoplay; controls"); // add the allow attribute
             document.body.appendChild(iframe);
-            window.addEventListener('resize', updateEmbedSize); // add event listener for resize
+
+            // add event listener for window resize
+            window.addEventListener('resize', function() {
+                ext.set_embed_size();
+            });
         }
         iframe.src = url;
     };
@@ -25,7 +29,6 @@
         if (iframe) {
             document.body.removeChild(iframe);
             iframe = null;
-            window.removeEventListener('resize', updateEmbedSize); // remove event listener when removed
         }
     };
 
@@ -38,11 +41,12 @@
         }
     };
 
-    ext.set_embed_width_height = function(width, height) {
+    ext.set_embed_size = function() {
         if (iframe) {
-            iframe.style.width = width + 'px';
-            iframe.style.height = height + 'px';
-            updateEmbedSize(); // call update function to resize text
+            var stageWidth = window.innerWidth;
+            var stageHeight = window.innerHeight;
+            iframe.style.width = (stageWidth * 0.8) + 'px';
+            iframe.style.height = (stageHeight * 0.8) + 'px';
         }
     };
 
@@ -50,20 +54,13 @@
         return iframe ? iframe.src : '';
     };
 
-    function updateEmbedSize() {
-        // get the scale factor to resize the text
-        var scaleFactor = Math.min(iframe.offsetWidth / 480, iframe.offsetHeight / 360);
-        // set the font size to be 60% of the scale factor times the original font size (10px)
-        iframe.contentWindow.document.body.style.fontSize = scaleFactor * 6 + 'px';
-    }
-
     // Block and block menu descriptions
     var descriptor = {
         blocks: [
             ['', 'embed %s', 'embed', 'https://www.example.com'],
             ['', 'remove embed', 'remove_embed'],
             ['', 'set embed position x:%n position y:%n', 'set_embed_position', 0, 0],
-            ['', 'set embed width:%n height:%n', 'set_embed_width_height', 200, 200],
+            ['', 'set embed size', 'set_embed_size'],
             ['r', 'current url', 'current_url']
         ]
     };
