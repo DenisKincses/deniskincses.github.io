@@ -14,6 +14,7 @@
         if (!iframe) {
             iframe = document.createElement('iframe');
             iframe.style.position = 'absolute';
+            iframe.setAttribute("allow", "autoplay; controls"); // add the allow attribute
             document.body.appendChild(iframe);
         }
         iframe.src = url;
