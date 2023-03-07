@@ -16,11 +16,6 @@
             iframe.style.position = 'absolute';
             iframe.setAttribute("allow", "autoplay; controls"); // add the allow attribute
             document.body.appendChild(iframe);
-
-            // add event listener for window resize
-            window.addEventListener('resize', function() {
-                ext.set_embed_size();
-            });
         }
         iframe.src = url;
     };
@@ -41,12 +36,12 @@
         }
     };
 
-    ext.set_embed_size = function() {
+    ext.set_embed_width_height = function(width, height) {
         if (iframe) {
             var stageWidth = window.innerWidth;
             var stageHeight = window.innerHeight;
-            iframe.style.width = (stageWidth * 0.8) + 'px';
-            iframe.style.height = (stageHeight * 0.8) + 'px';
+            iframe.style.width = width + stageWidth + 'px';
+            iframe.style.height = height + stageHeight + 'px';
         }
     };
 
@@ -60,7 +55,7 @@
             ['', 'embed %s', 'embed', 'https://www.example.com'],
             ['', 'remove embed', 'remove_embed'],
             ['', 'set embed position x:%n position y:%n', 'set_embed_position', 0, 0],
-            ['', 'set embed size', 'set_embed_size'],
+            ['', 'set embed width:%n height:%n', 'set_embed_width_height', 200, 200],
             ['r', 'current url', 'current_url']
         ]
     };
