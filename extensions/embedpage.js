@@ -40,8 +40,8 @@
         if (iframe) {
             var stageWidth = window.innerWidth;
             var stageHeight = window.innerHeight;
-            iframe.style.width = width + stageWidth + 'px';
-            iframe.style.height = height + stageHeight + 'px';
+            iframe.style.width = (stageWidth / 2 + width) +  'px';
+            iframe.style.height = (stageHeight / 2 + height) + 'px';
         }
     };
 
