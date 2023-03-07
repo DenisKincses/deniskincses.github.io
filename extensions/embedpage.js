@@ -16,6 +16,7 @@
             iframe.style.position = 'absolute';
             iframe.setAttribute("allow", "autoplay; controls"); // add the allow attribute
             document.body.appendChild(iframe);
+            window.addEventListener('resize', updateEmbedSize); // add event listener for resize
         }
         iframe.src = url;
     };
@@ -24,6 +25,7 @@
         if (iframe) {
             document.body.removeChild(iframe);
             iframe = null;
+            window.removeEventListener('resize', updateEmbedSize); // remove event listener when removed
         }
     };
 
@@ -40,12 +42,20 @@
         if (iframe) {
             iframe.style.width = width + 'px';
             iframe.style.height = height + 'px';
+            updateEmbedSize(); // call update function to resize text
         }
     };
 
     ext.current_url = function() {
         return iframe ? iframe.src : '';
     };
+
+    function updateEmbedSize() {
+        // get the scale factor to resize the text
+        var scaleFactor = Math.min(iframe.offsetWidth / 480, iframe.offsetHeight / 360);
+        // set the font size to be 60% of the scale factor times the original font size (10px)
+        iframe.contentWindow.document.body.style.fontSize = scaleFactor * 6 + 'px';
+    }
 
     // Block and block menu descriptions
     var descriptor = {
