@@ -1,39 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Canvas Drawing Generator</title>
+	<title>keypix</title>
 	<style type="text/css">
 		body {
 			background-color: #666666;
 			margin: 0;
 			padding: 0;
 			display: flex;
-			flex-direction: column;
+			justify-content: center;
 			align-items: center;
 			height: 100vh;
 		}
 		#canvas {
-			margin-top: 20px;
+			margin: auto;
 			display: flex;
 			flex-wrap: wrap;
 			width: 256px;
 			height: 256px;
-			background-color: #FFFFFF;
-			box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+			background-color: #666666;
+		}
+		.pixel {
+			box-sizing: border-box;
+			width: 16px;
+			height: 16px;
+			background-color: #000000;
 		}
 		#error-message {
 			color: #FF0000;
 			text-align: center;
 			margin-top: 20px;
 		}
-		#image-upload {
+		#upload {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
 			margin-top: 20px;
+			margin-bottom: 20px; /* add margin-bottom to create space between canvas and upload section */
+			width: 256px; /* add width to match canvas */
+			margin-left: auto; /* move the upload section to the right */
+			margin-right: auto; /* move the upload section to the left */
 		}
 		label {
-			display: block;
 			margin-bottom: 10px;
 		}
-		input[type="file"] {
+		input[type="text"] {
 			padding: 5px;
 			margin-right: 10px;
 			font-size: 16px;
@@ -46,54 +57,78 @@
 	</style>
 </head>
 <body>
-	<h1>Canvas Drawing Generator</h1>
-	<label for="image-upload">Select an image file:</label>
-	<input type="file" id="image-upload">
-	<button id="submit-button">Generate Drawing</button>
-	<div id="error-message"></div>
-	<canvas id="canvas"></canvas>
+	<div id="canvas"></div>
+	<div id="upload">
+		<label for="code-input">Upload custom code:</label>
+		<input type="text" id="code-input">
+		<button id="submit-button">Submit</button>
+	</div>
+	<div id="error-message" class="error"></div>
 	<script type="text/javascript">
+		const colors = {
+			"1": "#E68A8A",
+			"2": "#E6B68A",
+			"3": "#E6E28A",
+			"4": "#91E68A",
+			"5": "#8AE6DB",
+			"6": "#8A99E6",
+			"7": "#E68ACB",
+			"8": "#FFFFFF",
+			"9": "#666666",
+			"a": "#660000",
+			"s": "#663100",
+			"d": "#666300",
+			"f": "#086600",
+			"g": "#00665A",
+			"h": "#001166",
+			"j": "#660049",
+			"0": "#000000",
+			"q": "#E60000",
+			"w": "#E66F00",
+			"e": "#E6DE00",
+			"r": "#13E600",
+			"t": "#00E6CB",
+			"y": "#0026E6",
+			"u": "#E600A4",
+			"-": "#FFFFFF"
+		};
 		const canvas = document.getElementById("canvas");
-		const imageUpload = document.getElementById("image-upload");
+		const codeInput = document.getElementById("code-input");
 		const submitButton = document.getElementById("submit-button");
 		const errorMessage = document.getElementById("error-message");
 		submitButton.addEventListener("click", () => {
-			if (!imageUpload.files || !imageUpload.files[0]) {
-				errorMessage.textContent = "Error: No image selected";
+			const code = codeInput.value;
+			if (!isValidCode(code)) {
+				errorMessage.textContent = "Error: Invalid code";
+				if (code.length !== 256) {
+					errorMessage.textContent = "Error: Code must be 256 characters";
+				}
 				return;
 			}
-			const reader = new FileReader();
-			reader.onload = () => {
-				const img = new Image();
-				img.onload = () => {
-					errorMessage.textContent = "";
-					renderDrawing(img);
-				};
-				img.src = reader.result;
-			};
-			reader.readAsDataURL(imageUpload.files[0]);
+			errorMessage.textContent = "";
+			renderDrawing(code);
 		});
-		function renderDrawing(img) {
-			canvas.width = img.width;
-			canvas.height = img.height;
-			const ctx = canvas.getContext("2d");
-			ctx.drawImage(img, 0, 0);
-			const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-			const pixels = imageData.data;
-			canvas.innerHTML = "";
-			canvas.style.width = "256px";
-			canvas.style.height = "256px";
-			for (let i = 0; i < pixels.length; i += 4) {
-				const r = pixels[i];
-				const g = pixels[i + 1];
-				const b = pixels[i + 2];
-				const a = pixels[i + 3];
-				const pixel = document.createElement("div");
-				pixel.classList.add("pixel");
-				pixel.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${a})`;
-				canvas.appendChild(pixel);
+		function isValidCode(code) {
+			if (code.length !== 256) {
+				return false;
 			}
+			for (let i = 0; i < code.length; i++) {
+				if (!colors.hasOwnProperty(code[i])) {
+					return false;
+				}
+			}
+			return true;
 		}
-	</script>
+		function renderDrawing(code) {
+		  canvas.innerHTML = "";
+		  for (let i = 0; i < code.length; i++) {
+		    const pixel = document.createElement("div");
+		    pixel.classList.add("pixel");
+		    pixel.style.backgroundColor = colors[code[i]];
+		    canvas.appendChild(pixel);
+ 			 }
+		}
+		renderDrawing("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+</script>
 </body>
 </html>
