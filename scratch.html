@@ -93,12 +93,13 @@
 			return true;
 		}
 		function renderDrawing(code) {
-			canvas.innerHTML = "";
-			for (let i = 0; i < code.length; i++) {
-				const pixel = document.createElement("div");
-				pixel.classList.add("pixel");
-				pixel.style.backgroundColor = colors[code[i]];
-			}
+		  canvas.innerHTML = "";
+		  for (let i = 0; i < code.length; i++) {
+		    const pixel = document.createElement("div");
+		    pixel.classList.add("pixel");
+		    pixel.style.backgroundColor = colors[code[i]];
+		    canvas.appendChild(pixel);
+ 			 }
 		}
 		renderDrawing("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 </script>
