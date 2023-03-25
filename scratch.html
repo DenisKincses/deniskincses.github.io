@@ -23,12 +23,22 @@
 			border: 1px solid #333333;
 			background-color: #000000;
 		}
+		.error {
+			color: #FF0000;
+			text-align: center;
+			margin-top: 20px;
+		}
 	</style>
 </head>
 <body>
 	<div id="canvas"></div>
+	<div id="upload">
+		<label for="code-input">Upload custom code:</label>
+		<input type="text" id="code-input">
+		<button id="submit-button">Submit</button>
+	</div>
+	<div id="error-message" class="error"></div>
 	<script type="text/javascript">
-		const drawing = "hgggggg00gggghhhhghggg0jj99ggghhhggggj9s117gghghhghggdas722aggghhgggg907222aggghhhggga001922ggggggggg9h22221ggghhgggggy0222gggggggggg96y7j19g9ggggggg960118g9g9gggg90h5h918hhg9gg00000y5986h0hhhg00000h8jt969y0hghhh0058080h96yhy0h900h8at0yhyyhh0090090jghyhyh0";
 		const colors = {
 			"1": "#E68A8A",
 			"2": "#E6B68A",
@@ -53,15 +63,40 @@
 			"r": "#13E600",
 			"t": "#00E6CB",
 			"y": "#0026E6",
-			"u": "#E600A4"
+			"u": "#E600A4",
+			"-": "#FFFFFF"
 		};
 		const canvas = document.getElementById("canvas");
-		for (let i = 0; i < drawing.length; i++) {
-			const pixel = document.createElement("div");
-			pixel.classList.add("pixel");
-			pixel.style.backgroundColor = colors[drawing[i]];
-			canvas.appendChild(pixel);
+		const codeInput = document.getElementById("code-input");
+		const submitButton = document.getElementById("submit-button");
+		const errorMessage = document.getElementById("error-message");
+		submitButton.addEventListener("click", () => {
+			const code = codeInput.value;
+			if (!isValidCode(code)) {
+				errorMessage.textContent = "Error: Invalid code";
+				return;
+			}
+			errorMessage.textContent = "";
+			renderDrawing(code);
+		});
+		function isValidCode(code) {
+			for (let i = 0; i < code.length; i++) {
+				if (!colors.hasOwnProperty(code[i])) {
+					return false;
+				}
+			}
+			return true;
 		}
-	</script>
+		function renderDrawing(code) {
+			canvas.innerHTML = "";
+			for (let i = 0; i < code.length; i++) {
+				const pixel = document.createElement("div");
+				pixel.classList.add("pixel");
+				pixel.style.backgroundColor = colors[code[i]];
+				canvas.appendChild(pixel);
+			}
+		}
+		renderDrawing("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+</script>
 </body>
 </html>
