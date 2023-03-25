@@ -1,64 +1,67 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.png">
-    <title>DenisKincses</title>
-    <style>
-      body {
-        background-color: #f2f2f2;
-        font-family: Verdana, sans-serif;
-      }
-      footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background-color: lightgray;
-        text-align: center;
-        padding: 10px;
-      }
-      footer a {
-        margin: 0 10px;
-      }
-    </style>
-  </head>
-  <body>
-    <div style="text-align:center;">
-  <img src="assets/dkfull.png" alt="DenisKincses">
-</div>
-    <h1>Custom Scratch Extensions</h1>
-    <ul>
-      <li>
-        <a href="https://deniskincses.github.io/deniskincses/extensions/windtools.js">windtools.js</a><br>
-        <p>Blocks that can change the X and Y position of the window, and change its height and width. <a href="https://turbowarp.org/editor?extension=https://deniskincses.github.io/deniskincses/extensions/windtools.js">Try it out here!</a></p>
-        <p>There's a bug that slows down projects, to fix this, put a "wait (0) seconds" block after the windtools.js block.</p>
-        <p>This only works with Electron.</p>
-      </li>
-      <li>
-        <a href="https://deniskincses.github.io/deniskincses/extensions/urlopen.js">urlopen.js</a><br>
-        <p>Opens URLS on the default Browser. <a href="https://turbowarp.org/editor?extension=https://deniskincses.github.io/deniskincses/extensions/urlopen.js">Try it out here!</a></p>
-        <p>This only works with Electron.</p>
-      </li>
-        <li>
-         <a href="https://deniskincses.github.io/deniskincses/extensions/alert.js">alert.js</a><br>
-         <p>Alert windows that popup. <a href="https://turbowarp.org/editor?extension=https://deniskincses.github.io/deniskincses/extensions/alert.js">Try it out here!</a></p>
-         <p>This only works with Electron.</p>
-      </li>
-      <li>
-         <a href="https://deniskincses.github.io/deniskincses/extensions/getinfo.js">getinfo.js</a><br>
-         <p>It gets your browser, and OS information, into a reporter. <a href="https://turbowarp.org/editor?extension=https://deniskincses.github.io/deniskincses/extensions/getinfo.js">Try it out here!</a></p>
-         <p>This works everywhere.</p>
-      </li>
-      <li>
-         <a href="https://deniskincses.github.io/deniskincses/extensions/embedpage.js">embedpage.js</a><br>
-         <p>A Scratch Extension that embeds a page. <a href="https://turbowarp.org/editor?extension=https://deniskincses.github.io/deniskincses/extensions/embedpage.js">Try it out here!</a></p>
-        <p>This only works with Electron.</p>
-      </li>
-    </ul>
-  <footer>
-    Denis Kincses  -
-    <a href="https://twitter.com/deniskincses">[ Twitter ]</a>
-    <a href="https://youtube.com/c/deniskincses">[ YouTube ]</a>
-    <a href="https://scratch.mit.edu/denis_kinces122">[ Scratch ]</a>
-    <a href="https://github.com/DenisKincses">[ Github ]</a>
-  </footer>
-  </body>
+<head>
+	<title>Hex Canvas</title>
+	<style type="text/css">
+		body {
+			background-color: #666666;
+			margin: 0;
+			padding: 0;
+		}
+		#canvas {
+			margin: auto;
+			display: flex;
+			flex-wrap: wrap;
+			width: 256px;
+			height: 256px;
+			background-color: #666666;
+		}
+		.pixel {
+			box-sizing: border-box;
+			width: 16px;
+			height: 16px;
+			border: 1px solid #333333;
+			background-color: #000000;
+		}
+	</style>
+</head>
+<body>
+	<div id="canvas"></div>
+	<script type="text/javascript">
+		const drawing = "hgggggg00gggghhhhghggg0jj99ggghhhggggj9s117gghghhghggdas722aggghhgggg907222aggghhhggga001922ggggggggg9h22221ggghhgggggy0222gggggggggg96y7j19g9ggggggg960118g9g9gggg90h5h918hhg9gg00000y5986h0hhhg00000h8jt969y0hghhh0058080h96yhy0h900h8at0yhyyhh0090090jghyhyh0";
+		const colors = {
+			"1": "#E68A8A",
+			"2": "#E6B68A",
+			"3": "#E6E28A",
+			"4": "#91E68A",
+			"5": "#8AE6DB",
+			"6": "#8A99E6",
+			"7": "#E68ACB",
+			"8": "#FFFFFF",
+			"9": "#666666",
+			"a": "#660000",
+			"s": "#663100",
+			"d": "#666300",
+			"f": "#086600",
+			"g": "#00665A",
+			"h": "#001166",
+			"j": "#660049",
+			"0": "#000000",
+			"q": "#E60000",
+			"w": "#E66F00",
+			"e": "#E6DE00",
+			"r": "#13E600",
+			"t": "#00E6CB",
+			"y": "#0026E6",
+			"u": "#E600A4"
+		};
+		const canvas = document.getElementById("canvas");
+		for (let i = 0; i < drawing.length; i++) {
+			const pixel = document.createElement("div");
+			pixel.classList.add("pixel");
+			pixel.style.backgroundColor = colors[drawing[i]];
+			canvas.appendChild(pixel);
+		}
+	</script>
+</body>
 </html>
