@@ -73,12 +73,18 @@
 			const code = codeInput.value;
 			if (!isValidCode(code)) {
 				errorMessage.textContent = "Error: Invalid code";
+				if (code.length !== 256) {
+					errorMessage.textContent = "Error: Code must be 256 characters";
+				}
 				return;
 			}
 			errorMessage.textContent = "";
 			renderDrawing(code);
 		});
 		function isValidCode(code) {
+			if (code.length !== 256) {
+				return false;
+			}
 			for (let i = 0; i < code.length; i++) {
 				if (!colors.hasOwnProperty(code[i])) {
 					return false;
@@ -92,7 +98,6 @@
 				const pixel = document.createElement("div");
 				pixel.classList.add("pixel");
 				pixel.style.backgroundColor = colors[code[i]];
-				canvas.appendChild(pixel);
 			}
 		}
 		renderDrawing("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
