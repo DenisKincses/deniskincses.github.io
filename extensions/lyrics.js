@@ -14,6 +14,7 @@
                     const songId = response.response.hits[0].result.id;
                     const songUrl = `${GENIUS_API_URL}/songs/${songId}`;
                     xhr.open('GET', songUrl, true);
+                    xhr.setRequestHeader('Authorization', `Bearer ${GENIUS_ACCESS_TOKEN}`);
                     xhr.onreadystatechange = function () {
                         if (xhr.readyState === 4 && xhr.status === 200) {
                             const songResponse = JSON.parse(xhr.responseText);
@@ -37,7 +38,7 @@
     // Block and block menu descriptions
     const descriptor = {
         blocks: [
-            ['r', 'Get lyrics of %s', 'getLyrics', 'song title'],
+            ['R', 'Get lyrics of %s', 'getLyrics', 'song title'],
         ],
     };
 
