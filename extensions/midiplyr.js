@@ -1,101 +1,109 @@
-// Load the MidiPlayer.js library
-var script = document.createElement('script');
-script.src = 'path/to/MidiPlayer.js'; // Replace 'path/to' with the actual path to the MidiPlayer.js file
-script.onload = function () {
-  // Your code using the MidiPlayer.js library goes here
-
-  // Constants:
-  var MIDI_FILE_LOADED_EVENT = 'midifileloaded';
-
-  // Variables:
-  var player = null;
-  var midiFileUrl = null;
-  var midiFileMetadata = null;
-
-  // Functions:
-  function loadMidiFile(url) {
-      player = new MidiPlayer.Player(function (event) {
-          if (event.name == 'noteOn') {
-              ext.trigger({type: 'noteOn', pitch: event.noteNumber, velocity: event.velocity});
-          } else if (event.name == 'noteOff') {
-              ext.trigger({type: 'noteOff', pitch: event.noteNumber, velocity: event.velocity});
+(function(ext) {
+  // Define constants
+  var STATUS_STOPPED = 0;
+  var STATUS_PLAYING = 1;
+  var STATUS_PAUSED = 2;
+  
+  // Initialize variables
+  var midiPlayer = null;
+  var midiFile = null;
+  var midiStatus = STATUS_STOPPED;
+  var midiCurrentTime = 0;
+  var midiTotalTime = 0;
+  
+  // Define block functions
+  ext.playMidi = function(url) {
+    // Stop any currently playing MIDI
+    if (midiPlayer !== null) {
+      ext.stopMidi();
+    }
+    
+    // Load the MIDI file
+    fetch(url)
+      .then(response => response.arrayBuffer())
+      .then(data => {
+        midiFile = new MidiFile(data);
+        midiPlayer = new MidiPlayer.Player(function(event, index) {
+          if (event.name === 'Note on') {
+            // Do something when a note is played
           }
-      });
-
-      midiFileUrl = url;
-      player.loadFile(midiFileUrl, function () {
-          midiFileMetadata = {
-              duration: player.endTime,
-              bpm: player.tempo,
-              tracks: player.tracks.length
-          };
-          ext.trigger(MIDI_FILE_LOADED_EVENT);
-      });
-  }
-
-  function playMidiFile() {
-      if (player) {
-          player.play();
-      }
-  }
-
-  function pauseMidiFile() {
-      if (player) {
-          player.pause();
-      }
-  }
-
-  function stopMidiFile() {
-      if (player) {
-          player.stop();
-      }
-  }
-
-  // Extension API:
-  ext.playMidiFile = function () {
-      playMidiFile();
+        });
+        midiPlayer.loadArrayBuffer(data);
+        midiStatus = STATUS_PLAYING;
+        midiCurrentTime = 0;
+        midiTotalTime = midiPlayer.endTime;
+        midiPlayer.play();
+      })
+      .catch(error => console.log(error));
   };
-
-  ext.pauseMidiFile = function () {
-      pauseMidiFile();
+  
+  ext.pauseMidi = function() {
+    if (midiStatus === STATUS_PLAYING) {
+      midiPlayer.pause();
+      midiStatus = STATUS_PAUSED;
+      midiCurrentTime = midiPlayer.currentTime;
+    }
   };
-
-  ext.stopMidiFile = function () {
-      stopMidiFile();
+  
+  ext.resumeMidi = function() {
+    if (midiStatus === STATUS_PAUSED) {
+      midiPlayer.play();
+      midiStatus = STATUS_PLAYING;
+    }
   };
-
-  ext.loadMidiFileFromUrl = function (url) {
-      loadMidiFile(url);
+  
+  ext.stopMidi = function() {
+    if (midiPlayer !== null) {
+      midiPlayer.stop();
+      midiStatus = STATUS_STOPPED;
+      midiCurrentTime = 0;
+      midiTotalTime = 0;
+      midiPlayer = null;
+      midiFile = null;
+    }
   };
-
-  ext.getMidiFileDuration = function () {
-      return midiFileMetadata ? midiFileMetadata.duration : null;
+  
+  ext.getMidiName = function() {
+    if (midiFile !== null) {
+      return midiFile.name;
+    }
+    return '';
   };
-
-  ext.getMidiFileBpm = function () {
-      return midiFileMetadata ? midiFileMetadata.bpm : null;
+  
+  ext.getMidiArtist = function() {
+    if (midiFile !== null) {
+      return midiFile.artist;
+    }
+    return '';
   };
-
-  ext.getMidiFileTracksCount = function () {
-      return midiFileMetadata ? midiFileMetadata.tracks : null;
+  
+  ext.getMidiDuration = function() {
+    return midiTotalTime;
   };
-
-  // Block and menu descriptions:
+  
+  ext.getMidiCurrentTime = function() {
+    if (midiStatus === STATUS_PLAYING) {
+      return midiPlayer.currentTime;
+    }
+    return midiCurrentTime;
+  };
+  
+  // Define block metadata
   var descriptor = {
-      blocks: [
-          [' ', 'Load MIDI file from URL %s', 'loadMidiFileFromUrl', ''],
-          [' ', 'Play MIDI file', 'playMidiFile'],
-          [' ', 'Pause MIDI file', 'pauseMidiFile'],
-          [' ', 'Stop MIDI file', 'stopMidiFile'],
-          ['r', 'MIDI file duration', 'getMidiFileDuration'],
-          ['r', 'MIDI file BPM', 'getMidiFileBpm'],
-          ['r', 'MIDI file tracks count', 'getMidiFileTracksCount']
-      ],
-      menus: {}
-  };
-
-  // Register the extension:
-  ScratchExtensions.register('MIDI file player', descriptor, ext);
-
+    blocks: [
+      [' ', 'play MIDI from URL %s', 'playMidi', ' '],
+      [' ', 'pause MIDI', 'pauseMidi'],
+      [' ', 'resume MIDI', 'resumeMidi'],
+      [' ', 'stop MIDI', 'stopMidi'],
+      ['r', 'MIDI name', 'getMidiName'],
+      ['r', 'MIDI artist','getMidiArtist'],
+      ['r', 'MIDI duration', 'getMidiDuration'],
+      ['r', 'MIDI current time', 'getMidiCurrentTime']
+],
+menus: {},
+url: 'https://deniskincses.github.io/deniskincses/'
 };
-document.head.appendChild(script);
+
+// Register the extension
+ScratchExtensions.register('MIDI', descriptor, ext);
+})({});
