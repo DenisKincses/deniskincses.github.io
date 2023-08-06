@@ -5,8 +5,26 @@
     <title>DenisKincses</title>
     <style>
       div {
-      padding: 70px;
-      background-color: #37590D;
+        padding: 70px;
+        background-color: #37590D;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: sinusMove 5s infinite;
+      }
+      
+      @keyframes sinusMove {
+        0% {
+          transform: translate(-50%, -50%) translateX(0);
+        }
+        50% {
+          transform: translate(-50%, -50%) translateX(100px);
+        }
+        100% {
+          transform: translate(-50%, -50%) translateX(0);
+        }
+      }
     }
       body {
         font-family: Verdana, sans-serif;
