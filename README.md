@@ -1,5 +1,3 @@
-## Custom Scratch Extensions for Turbowarp
+## Website
 
-**https://deniskincses.github.io/scratch/**
-
-More information in the website.
+**https://deniskincses.github.io/**
