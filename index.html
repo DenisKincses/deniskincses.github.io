@@ -4,10 +4,6 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.png">
     <title>DenisKincses</title>
     <style>
-      div {
-        padding: 70px;
-        background-color: #37590D;
-      }
       body {
         font-family: Verdana, sans-serif;
         /* Set the background image and adjust its properties */
@@ -17,6 +13,25 @@
         background-attachment: fixed;
         /* Apply background brightness */
         /* Add other styles as needed */
+      }
+      header {
+        padding: 70px;
+        background-color: #37590D;
+        text-align: center;
+      }
+      h1 {
+        color: white; /* Title text color */
+      }
+      .links-container {
+        padding: 20px; /* Adjust as needed */
+        background-color: #1a1a1a; /* Background color for the links container */
+        text-align: center;
+      }
+      .links-container a {
+        color: #FFFFFF; /* Link text color */
+        text-decoration: none;
+        margin: 0 10px;
+        display: block; /* Make links appear as blocks to stack vertically */
       }
       footer {
         position: fixed;
@@ -32,18 +47,14 @@
     </style>
   </head>
   <body>
-    <div style="text-align:center;">
+    <header>
       <img src="assets/dkfull.png" alt="DenisKincses">
-    </div>
-    <h1>My Pages</h1>
+      <h1>My Pages</h1>
+    </header>
     <!-- Add the two new links here -->
-    <div>
-      <div>
-        <a href="https://deniskincses.github.io/scratchext.html">Custom Scratch Extensions</a>
-      </div>
-      <div>
-        <a href="https://deniskincses.github.io/livestream.html">Live Stream</a>
-      </div>
+    <div class="links-container">
+      <a href="https://deniskincses.github.io/scratchext.html">Custom Scratch Extensions</a>
+      <a href="https://deniskincses.github.io/livestream.html">Live Stream</a>
     </div>
     <footer>
       Denis Kincses  -
