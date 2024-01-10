@@ -1,107 +1,117 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <link rel="icon" type="image/x-icon" href="assets/favicon.png">
     <title>DenisKincses</title>
     <style>
-      body {
-        font-family: Verdana, sans-serif;
-        background-image: url("assets/maxresdefaultbright.png");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-      }
-      header {
-        padding: 70px;
-        background-color: #37590D;
-        text-align: center;
-      }
-      h1 {
-        color: white;
-      }
-      footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background-color: gray;
-        text-align: center;
-        padding: 10px;
-      }
-      footer a {
-        margin: 0 10px;
-      }
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-      li {
-        background-color: rgba(255, 255, 255, 0.7);
-        margin: 10px;
-        padding: 15px;
-        border-radius: 10px;
-      }
-      li img {
-        border-radius: 50%;
-        height: 40px;
-        width: 40px;
-        margin-right: 10px;
-      }
-      .post-content {
-        display: flex;
-        align-items: center;
-      }
-      .share-button {
-        margin-top: 10px;
-        cursor: pointer;
-        color: #37590D;
-        text-decoration: underline;
-      }
-    </style>
-  </head>
-  <body>
-    <header>
-      <img src="assets/dkfull.png" alt="DenisKincses">
-      <h1>Kincses Posts</h1>
-    </header>
-    <ul id="post-list">
-      <!-- Posts will be dynamically added here -->
-    </ul>
-    <footer>
-      Denis Kincses  -
-      <a href="https://twitter.com/deniskincses">[ Twitter ]</a>
-      <a href="https://youtube.com/c/deniskincses">[ YouTube ]</a>
-      <a href="https://scratch.mit.edu/denis_kinces122">[ Scratch ]</a>
-      <a href="https://github.com/DenisKincses">[ Github ]</a>
-    </footer>
+        body {
+            font-family: Verdana, sans-serif;
+            background-image: url("assets/maxresdefaultbright.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
 
-    <script>
-      fetch('posts.txt')
+        header {
+            padding: 70px;
+            background-color: #37590D;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: gray;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer a {
+            margin: 0 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            background-color: rgba(255, 255, 255, 0.7);
+            margin: 10px;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #ddd; /* Add this line for the border */
+        }
+
+        li img {
+            border-radius: 50%;
+            height: 40px;
+            width: 40px;
+            margin-right: 10px;
+        }
+
+        .post-content {
+            display: flex;
+            align-items: center;
+        }
+
+        .share-button {
+            margin-top: 10px;
+            cursor: pointer;
+            color: #37590D;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="assets/dkfull.png" alt="DenisKincses">
+    <h1>Kincses Posts</h1>
+</header>
+<ul id="post-list">
+    <!-- Posts will be dynamically added here -->
+</ul>
+<footer>
+    Denis Kincses -
+    <a href="https://twitter.com/deniskincses">[ Twitter ]</a>
+    <a href="https://youtube.com/c/deniskincses">[ YouTube ]</a>
+    <a href="https://scratch.mit.edu/denis_kinces122">[ Scratch ]</a>
+    <a href="https://github.com/DenisKincses">[ Github ]</a>
+</footer>
+
+<script>
+    fetch('posts.txt')
         .then(response => response.text())
         .then(posts => {
-          const postList = document.getElementById('post-list');
-          const postArray = posts.split('\n');
+            const postList = document.getElementById('post-list');
+            const postArray = posts.split('\n');
 
-          postArray.forEach(post => {
-            if (post.trim() !== '') {
-              const li = document.createElement('li');
-              li.innerHTML = `
-                <div class="post-content">
-                  <img src="assets/picture.png" alt="Profile Picture">
-                  <p>${post}</p>
-                </div>
-                <div class="share-button" onclick="sharePost('${post}')">Share</div>
-              `;
-              postList.appendChild(li);
-            }
-          });
+            postArray.forEach(post => {
+                if (post.trim() !== '') {
+                    const li = document.createElement('li');
+                    li.innerHTML = `
+                    <div class="post-content">
+                        <img src="assets/picture.png" alt="Profile Picture">
+                        <p>${post}</p>
+                    </div>
+                    <button class="share-button" onclick="sharePost('${post}')">
+                        <img src="assets/shareicon.png" alt="Share Icon">
+                    </button>
+                `;
+                    postList.appendChild(li);
+                }
+            });
         })
         .catch(error => console.error('Error fetching posts:', error));
 
-      function sharePost(post) {
-        // You can customize the share functionality here
+    function sharePost(post) {
         alert(`Shared post: ${post}`);
-      }
-    </script>
-  </body>
+    }
+</script>
 </html>
