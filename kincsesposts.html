@@ -92,23 +92,27 @@
         .then(response => response.text())
         .then(posts => {
             const postList = document.getElementById('post-list');
-            const postArray = posts.split('\n');
+            let postArray = posts.split('\n');
+
+            // Remove any empty lines
+            postArray = postArray.filter(post => post.trim() !== '');
+
+            // Reverse the array to display posts in reverse order
+            postArray.reverse();
 
             postArray.forEach(post => {
-                if (post.trim() !== '') {
-                    const li = document.createElement('li');
-                    li.innerHTML = `
-                        <img src="assets/picture.png" alt="Profile Picture" class="profile-picture">
-                        <div class="post-content">
-                            <p><strong>deniskincses</strong></p>
-                            <p>${post}</p>
-                            <button class="share-button" onclick="sharePost('${post}')">
-                                <img src="assets/shareicon.png" alt="Share Icon">
-                            </button>
-                        </div>
-                    `;
-                    postList.appendChild(li);
-                }
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <img src="assets/picture.png" alt="Profile Picture" class="profile-picture">
+                    <div class="post-content">
+                        <p><strong>deniskincses</strong></p>
+                        <p>${post}</p>
+                        <button class="share-button" onclick="sharePost('${post}')">
+                            <img src="assets/shareicon.png" alt="Share Icon">
+                        </button>
+                    </div>
+                `;
+                postList.appendChild(li);
             });
         })
         .catch(error => console.error('Error fetching posts:', error));
