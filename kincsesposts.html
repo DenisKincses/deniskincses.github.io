@@ -1,10 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <link rel="icon" type="image/x-icon" href="assets/favicon.png">
     <title>DenisKincses</title>
     <style>
-      /* Your existing styles remain unchanged */
+      body {
+        font-family: Verdana, sans-serif;
+        background-image: url("assets/maxresdefaultbright.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+      }
+      header {
+        padding: 70px;
+        background-color: #37590D;
+        text-align: center;
+      }
+      h1 {
+        color: white; /* Title text color */
+      }
+      footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: gray;
+        text-align: center;
+        padding: 10px;
+      }
+      footer a {
+        margin: 0 10px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        background-color: rgba(255, 255, 255, 0.7); /* 70% transparent white background */
+        margin: 10px;
+        padding: 15px;
+        border-radius: 10px;
+      }
+      .post {
+        display: flex;
+        align-items: center;
+      }
+      .post img {
+        width: 40px; /* Adjust the size of the profile picture */
+        height: 40px;
+        border-radius: 50%; /* Make the profile picture round */
+        margin-right: 10px;
+      }
     </style>
   </head>
   <body>
@@ -34,7 +79,18 @@
           postArray.forEach(post => {
             if (post.trim() !== '') {
               const li = document.createElement('li');
-              li.textContent = post;
+              li.className = 'post';
+              
+              // Profile Picture
+              const profilePic = document.createElement('img');
+              profilePic.src = 'assets/picture.png';
+              li.appendChild(profilePic);
+
+              // Post Content
+              const postContent = document.createElement('div');
+              postContent.textContent = post;
+              li.appendChild(postContent);
+
               postList.appendChild(li);
             }
           });
