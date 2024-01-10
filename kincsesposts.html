@@ -46,26 +46,27 @@
             margin: 10px;
             padding: 15px;
             border-radius: 10px;
-            border: 1px solid #ddd; /* Add this line for the border */
+            border: 1px solid #ddd;
+            display: flex;
+            align-items: center; /* Align items vertically */
         }
 
-        li img {
+        li img.profile-picture {
             border-radius: 50%;
-            height: 40px;
-            width: 40px;
+            height: 30px;
+            width: 30px;
             margin-right: 10px;
         }
 
         .post-content {
-            display: flex;
-            align-items: center;
+            flex: 1; /* Take up remaining space */
         }
 
         .share-button {
-            margin-top: 10px;
             cursor: pointer;
             color: #37590D;
             text-decoration: underline;
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -96,8 +97,8 @@
                 if (post.trim() !== '') {
                     const li = document.createElement('li');
                     li.innerHTML = `
+                    <img src="assets/picture.png" alt="Profile Picture" class="profile-picture">
                     <div class="post-content">
-                        <img src="assets/picture.png" alt="Profile Picture">
                         <p>${post}</p>
                     </div>
                     <button class="share-button" onclick="sharePost('${post}')">
@@ -111,7 +112,9 @@
         .catch(error => console.error('Error fetching posts:', error));
 
     function sharePost(post) {
+        // You can customize the share functionality here
         alert(`Shared post: ${post}`);
     }
 </script>
+</body>
 </html>
