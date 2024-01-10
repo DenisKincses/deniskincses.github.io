@@ -88,7 +88,7 @@
 </footer>
 
 <script>
-    fetch('posts.txt')
+    fetch('https://raw.githubusercontent.com/DenisKincses/deniskincses.github.io/main/posts.txt')
         .then(response => response.text())
         .then(posts => {
             const postList = document.getElementById('post-list');
