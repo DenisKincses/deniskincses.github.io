@@ -98,15 +98,15 @@
                 if (post.trim() !== '') {
                     const li = document.createElement('li');
                     li.innerHTML = `
-                    <img src="assets/picture.png" alt="Profile Picture" class="profile-picture">
-                    <p><strong>deniskincses</strong></p>
-                    <div class="post-content">
-                        <p>${post}</p>
-                    </div>
-                    <button class="share-button" onclick="sharePost('${post}')">
-                        <img src="assets/shareicon.png" alt="Share Icon">
-                    </button>
-                `;
+                        <img src="assets/picture.png" alt="Profile Picture" class="profile-picture">
+                        <div class="post-content">
+                            <p><strong>deniskincses</strong></p>
+                            <p>${post}</p>
+                            <button class="share-button" onclick="sharePost('${post}')">
+                                <img src="assets/shareicon.png" alt="Share Icon">
+                            </button>
+                        </div>
+                    `;
                     postList.appendChild(li);
                 }
             });
