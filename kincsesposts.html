@@ -10,6 +10,8 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
 
         header {
@@ -20,6 +22,7 @@
 
         h1 {
             color: white;
+            margin: 0; /* Remove default margin */
         }
 
         footer {
@@ -48,24 +51,26 @@
             border-radius: 10px;
             border: 1px solid #ddd;
             display: flex;
-            align-items: center; /* Align items vertically */
+            flex-direction: column; /* Display children in a column layout */
         }
 
         li img.profile-picture {
             height: 30px;
             width: 30px;
             margin-right: 10px;
+            border-radius: 50%; /* Make the profile picture circular */
         }
 
         .post-content {
             flex: 1; /* Take up remaining space */
+            padding: 10px; /* Add padding to the post content */
         }
 
         .share-button {
             cursor: pointer;
             color: #37590D;
             text-decoration: underline;
-            margin-left: 10px;
+            margin-top: 10px; /* Add margin to separate the post and share button */
         }
     </style>
 </head>
@@ -96,13 +101,16 @@
                 if (post.trim() !== '') {
                     const li = document.createElement('li');
                     li.innerHTML = `
-                    <img src="assets/picture.png" alt="Profile Picture" class="profile-picture">a
-                    <div class="post-content">
-                        <p>${post}</p>
+                    <img src="assets/picture.png" alt="Profile Picture" class="profile-picture">
+                    <div>
+                        <p><strong>Username:</strong> JohnDoe</p>
+                        <div class="post-content">
+                            <p>${post}</p>
+                        </div>
+                        <button class="share-button" onclick="sharePost('${post}')">
+                            <img src="assets/shareicon.png" alt="Share Icon">
+                        </button>
                     </div>
-                    <button class="share-button" onclick="sharePost('${post}')">
-                        <img src="assets/shareicon.png" alt="Share Icon">
-                    </button>
                 `;
                     postList.appendChild(li);
                 }
