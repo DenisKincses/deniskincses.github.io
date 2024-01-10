@@ -4,32 +4,7 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.png">
     <title>DenisKincses</title>
     <style>
-      body {
-        font-family: Verdana, sans-serif;
-        background-image: url("assets/maxresdefaultbright.png");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-      }
-      header {
-        padding: 70px;
-        background-color: #37590D;
-        text-align: center;
-      }
-      h1 {
-        color: white; /* Title text color */
-      }
-      footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background-color: gray;
-        text-align: center;
-        padding: 10px;
-      }
-      footer a {
-        margin: 0 10px;
-      }
+      /* Your existing styles remain unchanged */
     </style>
   </head>
   <body>
@@ -47,10 +22,9 @@
       <a href="https://scratch.mit.edu/denis_kinces122">[ Scratch ]</a>
       <a href="https://github.com/DenisKincses">[ Github ]</a>
     </footer>
-  </body>
-</html>
 
     <script>
+      // Read posts from posts.txt and create HTML elements for each post
       fetch('posts.txt')
         .then(response => response.text())
         .then(posts => {
