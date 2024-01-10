@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <link rel="icon" type="image/x-icon" href="assets/favicon.png">
     <title>DenisKincses</title>
@@ -17,7 +17,7 @@
         text-align: center;
       }
       h1 {
-        color: white; /* Title text color */
+        color: white;
       }
       footer {
         position: fixed;
@@ -33,22 +33,29 @@
       ul {
         list-style: none;
         padding: 0;
+        margin: 0;
       }
       li {
-        background-color: rgba(255, 255, 255, 0.7); /* 70% transparent white background */
+        background-color: rgba(255, 255, 255, 0.7);
         margin: 10px;
         padding: 15px;
         border-radius: 10px;
       }
-      .post {
+      li img {
+        border-radius: 50%;
+        height: 40px;
+        width: 40px;
+        margin-right: 10px;
+      }
+      .post-content {
         display: flex;
         align-items: center;
       }
-      .post img {
-        width: 40px; /* Adjust the size of the profile picture */
-        height: 40px;
-        border-radius: 50%; /* Make the profile picture round */
-        margin-right: 10px;
+      .share-button {
+        margin-top: 10px;
+        cursor: pointer;
+        color: #37590D;
+        text-decoration: underline;
       }
     </style>
   </head>
@@ -69,7 +76,6 @@
     </footer>
 
     <script>
-      // Read posts from posts.txt and create HTML elements for each post
       fetch('posts.txt')
         .then(response => response.text())
         .then(posts => {
@@ -79,23 +85,23 @@
           postArray.forEach(post => {
             if (post.trim() !== '') {
               const li = document.createElement('li');
-              li.className = 'post';
-              
-              // Profile Picture
-              const profilePic = document.createElement('img');
-              profilePic.src = 'assets/picture.png';
-              li.appendChild(profilePic);
-
-              // Post Content
-              const postContent = document.createElement('div');
-              postContent.textContent = post;
-              li.appendChild(postContent);
-
+              li.innerHTML = `
+                <div class="post-content">
+                  <img src="assets/picture.png" alt="Profile Picture">
+                  <p>${post}</p>
+                </div>
+                <div class="share-button" onclick="sharePost('${post}')">Share</div>
+              `;
               postList.appendChild(li);
             }
           });
         })
         .catch(error => console.error('Error fetching posts:', error));
+
+      function sharePost(post) {
+        // You can customize the share functionality here
+        alert(`Shared post: ${post}`);
+      }
     </script>
   </body>
 </html>
