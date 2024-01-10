@@ -1,34 +1,39 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <link rel="icon" type="image/x-icon" href="assets/favicon.png">
-    <title>DenisKincses</title>
+    <title>deniskincses</title>
     <style>
-      body {
-        font-family: Verdana, sans-serif;
-        background-image: url("assets/maxresdefaultbright.png");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-      }
-      header {
-        padding: 70px;
-        background-color: #37590D;
-        text-align: center;
-      }
-      h1 {
-        color: white; /* Title text color */
-      }
-      footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        background-color: gray;
-        text-align: center;
-        padding: 10px;
-      }
-      footer a {
-        margin: 0 10px;
+        body {
+            font-family: Verdana, sans-serif;
+            background-image: url("assets/maxresdefaultbright.png");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        header {
+            padding: 70px;
+            background-color: #37590D;
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: gray;
+            text-align: center;
+            padding: 10px;
+        }
+
+        footer a {
+            margin: 0 10px;
+        }
 
         ul {
             list-style: none;
@@ -38,15 +43,16 @@
 
         li {
             background-color: rgba(255, 255, 255, 0.7);
-            margin: 180px;
+            margin: 10px;
             padding: 15px;
             border-radius: 10px;
             border: 1px solid #ddd;
             display: flex;
-            flex-direction: column; /* Display children in a column layout */
+            align-items: center; /* Align items vertically */
         }
 
         li img.profile-picture {
+            border-radius: 50%;
             height: 30px;
             width: 30px;
             margin-right: 10px;
@@ -54,14 +60,13 @@
 
         .post-content {
             flex: 1; /* Take up remaining space */
-            padding: 10px; /* Add padding to the post content */
         }
 
         .share-button {
             cursor: pointer;
             color: #37590D;
             text-decoration: underline;
-            margin-top: 10px; /* Add margin to separate the post and share button */
+            margin-left: 10px;
         }
     </style>
 </head>
@@ -93,14 +98,13 @@
                     const li = document.createElement('li');
                     li.innerHTML = `
                     <img src="assets/picture.png" alt="Profile Picture" class="profile-picture">
-                      <p><strong>deniskincses</strong></p>
-                        <div class="post-content">
-                            <p>${post}</p>
-                        </div>
-                        <button class="share-button" onclick="sharePost('${post}')">
-                            <img src="assets/shareicon.png" alt="Share Icon">
-                        </button>
+                    <p><strong>deniskincses</strong></p>
+                    <div class="post-content">
+                        <p>${post}</p>
                     </div>
+                    <button class="share-button" onclick="sharePost('${post}')">
+                        <img src="assets/shareicon.png" alt="Share Icon">
+                    </button>
                 `;
                     postList.appendChild(li);
                 }
