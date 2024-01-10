@@ -102,16 +102,35 @@
 
             postArray.forEach(post => {
                 const li = document.createElement('li');
-                li.innerHTML = `
-                    <img src="assets/picture.png" alt="Profile Picture" class="profile-picture">
-                    <div class="post-content">
-                        <p><strong>deniskincses</strong></p>
-                        <p>${post}</p>
-                        <button class="share-button" onclick="sharePost('${post}')">
-                            <img src="assets/share.png" alt="Share Icon">
-                        </button>
-                    </div>
-                `;
+
+                // Check if the post contains an image URL
+                const match = post.match(/(http[s]?:\/\/[^\s]*)/);
+                if (match) {
+                    // If image URL is found, display the image
+                    li.innerHTML = `
+                        <img src="assets/picture.png" alt="Profile Picture" class="profile-picture">
+                        <div class="post-content">
+                            <p><strong>deniskincses</strong></p>
+                            <img src="${match[0]}" alt="Posted Image">
+                            <button class="share-button" onclick="sharePost('${post}')">
+                                <img src="assets/share.png" alt="Share Icon">
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    // If no image URL, display text-only post
+                    li.innerHTML = `
+                        <img src="assets/picture.png" alt="Profile Picture" class="profile-picture">
+                        <div class="post-content">
+                            <p><strong>deniskincses</strong></p>
+                            <p>${post}</p>
+                            <button class="share-button" onclick="sharePost('${post}')">
+                                <img src="assets/share.png" alt="Share Icon">
+                            </button>
+                        </div>
+                    `;
+                }
+
                 postList.appendChild(li);
             });
         })
