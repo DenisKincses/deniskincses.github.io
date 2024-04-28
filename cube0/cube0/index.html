@@ -220,11 +220,11 @@
         videoProvider: vm.runtime.ioDevices.video.provider
       };
 
-      scaffolding.setUsername("player####".replace(/#/g, () => Math.floor(Math.random() * 10)));
+      scaffolding.setUsername("cube0".replace(/#/g, () => Math.floor(Math.random() * 10)));
       scaffolding.setAccentColor("#00c3ff");
 
       try {
-        scaffolding.addCloudProvider(new Scaffolding.Cloud.WebSocketProvider(["wss://clouddata.turbowarp.org","wss://clouddata.turbowarp.xyz"], "p4-@ciube0.pmp"));
+        scaffolding.addCloudProvider(new Scaffolding.Cloud.WebSocketProvider(["wss://clouddata.turbowarp.org","wss://clouddata.turbowarp.xyz"], "p4-@cube0.pmp"));
       } catch (error) {
         console.error(error);
       }
@@ -234,9 +234,9 @@
       if (vm.setFramerate) vm.setFramerate(30);
       if (vm.renderer.setUseHighQualityRender) vm.renderer.setUseHighQualityRender(false);
       if (vm.setRuntimeOptions) vm.setRuntimeOptions({
-        fencing: true,
-        miscLimits: true,
-        maxClones: 300,
+        fencing: false,
+        miscLimits: false,
+        maxClones: 9999999999,
         dangerousOptimizations: false
       });
       if (vm.setCompilerOptions) vm.setCompilerOptions({
@@ -310,7 +310,7 @@
       await scaffolding.loadProject(projectData);
       setProgress(1);
       loadingScreen.hidden = true;
-      if (false) {
+      if (true) {
         scaffolding.start();
       } else {
         launchScreen.hidden = false;
