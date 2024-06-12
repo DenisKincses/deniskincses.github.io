@@ -55,3 +55,6 @@ v0.3.2|1|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_1133
 v0.3.3|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r113.zip/|113
 v0.3.3|1|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r114.zip/|114
 v0.4.0|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r115.zip/|115
+v0.4.0|1|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r117.zip/|117
+v0.4.1|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r118.zip/|118
+v0.4.1|1|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r119.zip/|119
