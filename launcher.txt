@@ -1,3 +1,4 @@
+v0.1.0|0|https://html-classic.itch.zone/html/2786348-309710/index.html|0
 v0.2.0|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r6.zip/|6
 v0.2.0|1|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r7.zip/|7
 v0.2.0|2|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r8.zip/|8
