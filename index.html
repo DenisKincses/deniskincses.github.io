@@ -16,8 +16,11 @@
         background-color: #37590D;
         text-align: center;
       }
-      header h1 {
-        color: rgb(228, 228, 228);
+      h1 {
+        color: white;
+      }
+      h2 {
+        color: lightgray;
       }
       h3 {
         color: black;
@@ -27,14 +30,27 @@
         color: rgb(61, 61, 61);
       }
       footer {
-        background-color: gray;
-        padding: 20px;
-        text-align: center;
-      }
-      footer a {
-        margin: 0 10px;
-        color:rgb(29, 29, 105)
-      }
+    padding: 10px 20px; /* Adjusts top/bottom and left/right padding */
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: calc(100% - 40px); /* Full width minus the left/right padding */
+    background-color: grey; /* Adjust this to match your grey bar */
+    z-index: 1000;
+    margin-right: 20px; /* Adds padding on the right side */
+    box-sizing: border-box; /* Ensures padding is included in the width */
+}
+footer a {
+    margin: 0 10px;
+    color: rgb(29, 29, 105);
+}
+footer img {
+    vertical-align: middle; /* Ensures the image aligns with the text */
+}
+footer h6 {
+    display: inline;
+    margin: 0;
+}
     </style>
   </head>
   <body>
@@ -50,11 +66,11 @@
       </li>
     </ul>
     <footer>
-      deniskincses  -
-      <a href="https://twitter.com/deniskincses">[ twitter ]</a>
-      <a href="https://youtube.com/c/deniskincses">[ youtube ]</a>
-      <a href="https://scratch.mit.edu/denis_kinces122">[ scratch ]</a>
-      <a href="https://github.com/DenisKincses">[ github ]</a>
-    </footer>
+      <a href="https://deniskincses.github.io"><img src="assets/sig.gif" alt="deniskincses"></a>
+      <a href="https://twitter.com/deniskincses"><h6>TWITTER</a>
+      <a href="https://youtube.com/c/deniskincses">YOUTUBE</a>
+      <a href="https://scratch.mit.edu/denis_kinces122">SCRATCH</a>
+      <a href="https://github.com/deniskincses">GITHUB</h6></a>
+      </footer>
   </body>
 </html>
