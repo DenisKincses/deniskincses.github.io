@@ -59,3 +59,4 @@ v0.4.0|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_1133
 v0.4.0|1|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r117.zip/|117
 v0.4.1|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r118.zip/|118
 v0.4.1|1|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r119.zip/|119
+v0.5.0|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r121.zip/|121
