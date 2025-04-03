@@ -63,3 +63,9 @@ v0.5.0|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_1133
 v0.5.1|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r123.zip/|123
 v0.5.2|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r124.zip/|124
 v0.5.3|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r125.zip/|125
+v0.6.0|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r127.zip/|127
+v0.6.0|1|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r128.zip/|128
+v0.6.0|2|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r130.zip/|130
+v0.6.1|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r131.zip/|131
+v0.6.1|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r132.zip/|132
+v0.6.2|0|https://uploads.ungrounded.net/alternate/1528000/1528775_alternate_113347_r133.zip/|133
